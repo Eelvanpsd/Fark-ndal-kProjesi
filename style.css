@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #2d2d2d; /* Arka plan rengi */
+    overflow: hidden; /* Taşmayı gizle */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Tüm ekranı kapla */
+    position: relative; /* Çocuk elemanların pozisyonunu etkileyebilmek için */
+}
+
+.center {
+    position: absolute; /* Resmin ve videonun aynı konumda durmasını sağlamak için */
+    top: 50%; /* Yükseklik olarak ortala */
+    left: 50%; /* Genişlik olarak ortala */
+    transform: translate(-50%, -50%); /* Gerçek ortalamak için */
+    max-width: none; /* Genişlik sınırlamasını kaldır */
+    max-height: none; /* Yükseklik sınırlamasını kaldır */
+}
+
+/* Başlangıçta video gizli olmalı */
+video {
+    display: none; /* Video başlangıçta gizli */
+    opacity: 0;    /* Fade-in için görünmez */
+    transition: opacity 1s ease-in-out; /* Geçiş efekti 1 saniye */
+}
+
+/* Resim için fade-out geçişi */
+img {
+    transition: opacity 1s ease-in-out; /* Resim fade-out yapacak */
+    max-width: 100%; /* Genişliği maksimum %100 olacak */
+    max-height: 100vh; /* Yüksekliği maksimum %100 olacak */
+}
+
+#toggleButton {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 1; /* Butonu en üstte tutmak için */
+    position: absolute; /* Butonu konumlandırmak için */
+    bottom: 20px; /* Resmin alt kısmından 20px yukarıda */
+    left: 50%; /* Ortaya yerleştir */
+    transform: translateX(-50%); /* Tam ortada görünmesi için */
+}
+
+#toggleButton:hover {
+    background-color: #45a049;
+}
+
+.fade {
+    opacity: 0; /* Fade out sırasında tamamen görünmez yap */
+}
+
+.show {
+    opacity: 1; /* Fade in sırasında tamamen görünür yap */
+    display: block; /* Videoyu görünür hale getir */
+}
+
+.overlay-text {
+    position: absolute;
+    bottom: 20px; /* Videonun üstünde */
+    left: 50%; /* Ortaya yerleştir */
+    transform: translateX(-50%); /* Tam ortada görünmesi için */
+    color: white;
+    font-size: 24px;
+    opacity: 0; /* Başlangıçta görünmez */
+    transition: opacity 0.5s; /* Yazının görünürlüğü için geçiş */
+    text-align: center; /* Yazı ortalı */
+    white-space: nowrap; /* Yazının kaymasını engelle */
+}
